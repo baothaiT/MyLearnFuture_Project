@@ -13,4 +13,10 @@
     <ProjectReference Include="..\MyLearnFuture.Persistence\MyLearnFuture.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.CommandQuery.EntityFrameworkCore" Version="11.0.750" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+  </ItemGroup>
+
 </Project>

@@ -6,5 +6,5 @@ public class ImagesEntity: BasedTableEntity
     public string Name { get; set;}
     public string? Url { get; set;}
 
-    public ICollection<SpacedRepetitionConfigEntity> spacedRepetitionConfigEntities { get; set;}
+    public ICollection<VocabulariesEntity>? ImagesEntity_VocabulariesEntity { get; set;}
 }

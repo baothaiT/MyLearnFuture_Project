@@ -12,8 +12,8 @@ using MyLearnFuture.Persistence;
 namespace MyLearnFuture.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250126090900_init")]
-    partial class init
+    [Migration("20250126191310_addfk")]
+    partial class addfk
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,10 +31,10 @@ namespace MyLearnFuture.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreateBy")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDelete")
@@ -50,6 +50,30 @@ namespace MyLearnFuture.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ImagesTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("170870f1-deff-44ad-a64e-6d82baca96a8"),
+                            IsDelete = false,
+                            Name = "Name",
+                            Url = "URL"
+                        },
+                        new
+                        {
+                            Id = new Guid("df26b731-e9eb-455c-bc35-b2086f22b87d"),
+                            IsDelete = false,
+                            Name = "Name",
+                            Url = "URL"
+                        },
+                        new
+                        {
+                            Id = new Guid("6e79f4e1-bee7-427e-9a6a-00f7a4eb8bfb"),
+                            CreateDate = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDelete = false,
+                            Name = "Name",
+                            Url = "URL"
+                        });
                 });
 
             modelBuilder.Entity("MyLearnFuture.Domain.Entities.SpacedRepetitionConfigEntity", b =>
@@ -58,10 +82,10 @@ namespace MyLearnFuture.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreateBy")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DurationDays")
@@ -70,27 +94,30 @@ namespace MyLearnFuture.API.Migrations
                     b.Property<int>("DurationHours")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ImagesEntityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("SpacedRepetitionConfigEntityId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("TopicsEntityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ImagesEntityId");
-
-                    b.HasIndex("SpacedRepetitionConfigEntityId");
-
-                    b.HasIndex("TopicsEntityId");
-
                     b.ToTable("SpacedRepetitionConfigTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("0f8f9715-4b2d-4825-a7c8-f455f829b50e"),
+                            CreateDate = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DurationDays = 0,
+                            DurationHours = 1,
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            Id = new Guid("2ec77b9f-3a76-4954-98fb-71639f3ea63e"),
+                            CreateDate = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DurationDays = 0,
+                            DurationHours = 2,
+                            IsDelete = false
+                        });
                 });
 
             modelBuilder.Entity("MyLearnFuture.Domain.Entities.TopicsEntity", b =>
@@ -99,10 +126,10 @@ namespace MyLearnFuture.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreateBy")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDelete")
@@ -114,6 +141,22 @@ namespace MyLearnFuture.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TopicsTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d9ecdd00-f934-42bc-9d9f-a286cfec8db1"),
+                            CreateDate = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDelete = false,
+                            Name = "Topic1"
+                        },
+                        new
+                        {
+                            Id = new Guid("699a0a8c-63d2-4a3c-84fc-5179c19102e3"),
+                            CreateDate = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDelete = false,
+                            Name = "Topic2"
+                        });
                 });
 
             modelBuilder.Entity("MyLearnFuture.Domain.Entities.VocabulariesEntity", b =>
@@ -122,14 +165,11 @@ namespace MyLearnFuture.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreateBy")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ImageId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("Image_Id")
                         .HasColumnType("uniqueidentifier");
@@ -141,17 +181,11 @@ namespace MyLearnFuture.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("SpacedRepetitionId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("SpacedRepetition_Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("SpacedRepetition_LastLearn")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("TopicId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("Topic_Id")
                         .HasColumnType("uniqueidentifier");
@@ -166,43 +200,28 @@ namespace MyLearnFuture.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImageId");
+                    b.HasIndex("Image_Id");
 
-                    b.HasIndex("SpacedRepetitionId");
+                    b.HasIndex("SpacedRepetition_Id");
 
-                    b.HasIndex("TopicId");
+                    b.HasIndex("Topic_Id");
 
                     b.ToTable("VocabulariesTable");
-                });
-
-            modelBuilder.Entity("MyLearnFuture.Domain.Entities.SpacedRepetitionConfigEntity", b =>
-                {
-                    b.HasOne("MyLearnFuture.Domain.Entities.ImagesEntity", null)
-                        .WithMany("spacedRepetitionConfigEntities")
-                        .HasForeignKey("ImagesEntityId");
-
-                    b.HasOne("MyLearnFuture.Domain.Entities.SpacedRepetitionConfigEntity", null)
-                        .WithMany("SpacedRepetitionConfig_VocabulariesEntity")
-                        .HasForeignKey("SpacedRepetitionConfigEntityId");
-
-                    b.HasOne("MyLearnFuture.Domain.Entities.TopicsEntity", null)
-                        .WithMany("spacedRepetitionConfigEntities")
-                        .HasForeignKey("TopicsEntityId");
                 });
 
             modelBuilder.Entity("MyLearnFuture.Domain.Entities.VocabulariesEntity", b =>
                 {
                     b.HasOne("MyLearnFuture.Domain.Entities.ImagesEntity", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
+                        .WithMany("ImagesEntity_VocabulariesEntity")
+                        .HasForeignKey("Image_Id");
 
                     b.HasOne("MyLearnFuture.Domain.Entities.SpacedRepetitionConfigEntity", "SpacedRepetition")
-                        .WithMany()
-                        .HasForeignKey("SpacedRepetitionId");
+                        .WithMany("SpacedRepetitionConfigEntity_VocabulariesEntity")
+                        .HasForeignKey("SpacedRepetition_Id");
 
                     b.HasOne("MyLearnFuture.Domain.Entities.TopicsEntity", "Topic")
-                        .WithMany()
-                        .HasForeignKey("TopicId");
+                        .WithMany("TopicsEntity_VocabulariesEntity")
+                        .HasForeignKey("Topic_Id");
 
                     b.Navigation("Image");
 
@@ -213,17 +232,17 @@ namespace MyLearnFuture.API.Migrations
 
             modelBuilder.Entity("MyLearnFuture.Domain.Entities.ImagesEntity", b =>
                 {
-                    b.Navigation("spacedRepetitionConfigEntities");
+                    b.Navigation("ImagesEntity_VocabulariesEntity");
                 });
 
             modelBuilder.Entity("MyLearnFuture.Domain.Entities.SpacedRepetitionConfigEntity", b =>
                 {
-                    b.Navigation("SpacedRepetitionConfig_VocabulariesEntity");
+                    b.Navigation("SpacedRepetitionConfigEntity_VocabulariesEntity");
                 });
 
             modelBuilder.Entity("MyLearnFuture.Domain.Entities.TopicsEntity", b =>
                 {
-                    b.Navigation("spacedRepetitionConfigEntities");
+                    b.Navigation("TopicsEntity_VocabulariesEntity");
                 });
 #pragma warning restore 612, 618
         }

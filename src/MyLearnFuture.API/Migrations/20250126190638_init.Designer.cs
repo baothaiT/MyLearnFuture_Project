@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyLearnFuture.Persistence;
 
@@ -11,9 +12,11 @@ using MyLearnFuture.Persistence;
 namespace MyLearnFuture.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250126190638_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,77 +200,7 @@ namespace MyLearnFuture.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Image_Id");
-
-                    b.HasIndex("SpacedRepetition_Id");
-
-                    b.HasIndex("Topic_Id");
-
                     b.ToTable("VocabulariesTable");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("dc5c06d2-3359-4807-b0d4-aad40ee7c5af"),
-                            CreateDate = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Image_Id = new Guid("170870f1-deff-44ad-a64e-6d82baca96a8"),
-                            IsDelete = false,
-                            Key = "Key1",
-                            SpacedRepetition_Id = new Guid("0f8f9715-4b2d-4825-a7c8-f455f829b50e"),
-                            SpacedRepetition_LastLearn = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Topic_Id = new Guid("d9ecdd00-f934-42bc-9d9f-a286cfec8db1"),
-                            Transcription = "Transcription",
-                            Value = "Value1"
-                        },
-                        new
-                        {
-                            Id = new Guid("2d7ec305-76b2-4938-a43a-0a777645b910"),
-                            CreateDate = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Image_Id = new Guid("df26b731-e9eb-455c-bc35-b2086f22b87d"),
-                            IsDelete = false,
-                            Key = "Key1",
-                            SpacedRepetition_Id = new Guid("2ec77b9f-3a76-4954-98fb-71639f3ea63e"),
-                            SpacedRepetition_LastLearn = new DateTime(2025, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Topic_Id = new Guid("699a0a8c-63d2-4a3c-84fc-5179c19102e3"),
-                            Transcription = "Transcription",
-                            Value = "Value1"
-                        });
-                });
-
-            modelBuilder.Entity("MyLearnFuture.Domain.Entities.VocabulariesEntity", b =>
-                {
-                    b.HasOne("MyLearnFuture.Domain.Entities.ImagesEntity", "Image")
-                        .WithMany("ImagesEntity_VocabulariesEntity")
-                        .HasForeignKey("Image_Id");
-
-                    b.HasOne("MyLearnFuture.Domain.Entities.SpacedRepetitionConfigEntity", "SpacedRepetition")
-                        .WithMany("SpacedRepetitionConfigEntity_VocabulariesEntity")
-                        .HasForeignKey("SpacedRepetition_Id");
-
-                    b.HasOne("MyLearnFuture.Domain.Entities.TopicsEntity", "Topic")
-                        .WithMany("TopicsEntity_VocabulariesEntity")
-                        .HasForeignKey("Topic_Id");
-
-                    b.Navigation("Image");
-
-                    b.Navigation("SpacedRepetition");
-
-                    b.Navigation("Topic");
-                });
-
-            modelBuilder.Entity("MyLearnFuture.Domain.Entities.ImagesEntity", b =>
-                {
-                    b.Navigation("ImagesEntity_VocabulariesEntity");
-                });
-
-            modelBuilder.Entity("MyLearnFuture.Domain.Entities.SpacedRepetitionConfigEntity", b =>
-                {
-                    b.Navigation("SpacedRepetitionConfigEntity_VocabulariesEntity");
-                });
-
-            modelBuilder.Entity("MyLearnFuture.Domain.Entities.TopicsEntity", b =>
-                {
-                    b.Navigation("TopicsEntity_VocabulariesEntity");
                 });
 #pragma warning restore 612, 618
         }
