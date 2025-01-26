@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyLearnFuture.Contract\MyLearnFuture.Contract.csproj" />
+    <ProjectReference Include="..\MyLearnFuture.Domain\MyLearnFuture.Domain.csproj" />
+    <ProjectReference Include="..\MyLearnFuture.Infrastructure\MyLearnFuture.Infrastructure.csproj" />
+    <ProjectReference Include="..\MyLearnFuture.Persistence\MyLearnFuture.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
